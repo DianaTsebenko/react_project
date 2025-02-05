@@ -1,0 +1,83 @@
+.movie-info {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 400px;
+    color: #F7F7F7;
+    z-index: 2;
+}
+
+.movie-title {
+    font-size: 40px;
+    margin-top: 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.movie-details {
+    display: flex;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    gap: 10px;
+}
+
+.movie-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    max-height: 4.5em;
+}
+
+.movie-description.expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    max-height: none;
+}
+
+.read-more {
+    background-color: transparent;
+    color: #F5C51C;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    transition: 0.3s;
+}
+
+.read-more:hover {
+    color: #FFFFFF;
+}
+
+.movie-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.watch-trailer,
+.watch-now {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.watch-trailer:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.watch-now:hover {
+    background: #F5C51C;
+    color: #2E2E2E;
+}
+
+.watch-now.disabled {
+    color: #A9A9A9;
+    cursor: not-allowed;
+}
