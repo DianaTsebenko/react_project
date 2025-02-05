@@ -56,7 +56,7 @@ const MovieGallery = () => {
         runtime: fullMovieDetails.runtime,
       });
 
-      document.body.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
+      document.body.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(7, 7, 7, 0.41)), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
