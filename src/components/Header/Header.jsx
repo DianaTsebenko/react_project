@@ -1,17 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css'; 
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./Header.css";
 
 const Header = () => {
   return (
     <header className="header">
-      <nav>
+      <nav className="header-nav">
+        <p className="logo"><span className="logo-yellow">New</span>Movie</p>
         <ul className="navigation">
-            <li className="nav-item"><Link to="/react_project/">New Movie</Link></li>
-            <li className="nav-item"><Link to="/react_project/genre">Genre</Link></li>
-            <li className="nav-item"><Link to="/react_project/country">Country</Link></li>
-            <li className="nav-item"><Link to="/react_project/movie">Movie</Link></li>
-            <li className="nav-item"><Link to="/react_project/tv-series">TV series</Link></li>
+          <li className="nav-item">
+            <NavLink to="/react_project/" end className={({ isActive }) => (isActive ? "active" : "")}>
+              New Movie
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/react_project/genre" className={({ isActive }) => (isActive ? "active" : "")}>
+              Genre
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/react_project/country" className={({ isActive }) => (isActive ? "active" : "")}>
+              Country
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/react_project/movie" className={({ isActive }) => (isActive ? "active" : "")}>
+              Movie
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/react_project/tv-series" className={({ isActive }) => (isActive ? "active" : "")}>
+              TV series
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>
