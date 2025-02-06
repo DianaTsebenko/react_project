@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 5%;
-  margin-top: 40px;
+  margin-top: 1%;
 }
 .navigation {
   list-style: none;
@@ -11,7 +11,6 @@
   justify-content: flex-end;
   column-gap: 64px;
   padding: 0;
-  width: 570px;
 }
 
 .nav-item a {

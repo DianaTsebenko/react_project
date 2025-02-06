@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Header = () => {
   return (
@@ -33,6 +34,7 @@ const Header = () => {
               TV series
             </NavLink>
           </li>
+          <li><SearchBar/></li>
         </ul>
       </nav>
     </header>
