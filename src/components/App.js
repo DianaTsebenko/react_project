@@ -16,7 +16,7 @@ const App = () => {
       <Header />
       <main>
         <Routes>
-          <Route path="/react_project/" element={<NewMovie />} />
+          <Route path="/react_project" element={<NewMovie />} />
           <Route path="/react_project/genre" element={<Genre />} />
           <Route path="/react_project/country" element={<Country />} />
           <Route path="/react_project/movie" element={<Movie />} />

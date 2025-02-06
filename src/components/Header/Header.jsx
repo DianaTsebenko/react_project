@@ -9,7 +9,7 @@ const Header = () => {
         <p className="logo"><span className="logo-yellow">New</span>Movie</p>
         <ul className="navigation">
           <li className="nav-item">
-            <NavLink to="/react_project/" end className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/react_project" end className={({ isActive }) => (isActive ? "active" : "")}>
               New Movie
             </NavLink>
           </li>
