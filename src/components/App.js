@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import '../App.css';
-// import MovieGallery from './MovieGallery';
 import Country from '../pages/Country';
 import Movie from '../pages/Movie';
 import NewMovie from '../pages/NewMovie';

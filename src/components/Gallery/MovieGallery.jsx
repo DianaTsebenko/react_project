@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import { tmdbApi } from "../api/api.js";
-import MovieInfo from "./MovieInfo";
-import "../styles/MovieGallery.css";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { tmdbApi } from "../../api/api";
+import MovieInfo from "../Info/MovieInfo";
+import "./MovieGallery.css";
 
 const MovieGallery = () => {
   const [movies, setMovies] = useState([]);
@@ -15,7 +15,7 @@ const MovieGallery = () => {
   const [isFetching, setIsFetching] = useState(false);
   let timeout;
 
-  const fetchMovies = async (isLeftScroll = false) => {
+  const fetchMovies = useCallback(async (isLeftScroll = false) => {
     if (isFetching) return;
     setIsFetching(true);
 
@@ -39,11 +39,11 @@ const MovieGallery = () => {
     } finally {
       setIsFetching(false);
     }
-  };
+  }, [isFetching, selectedMovie]);
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [fetchMovies]);
 
   const handleSelectMovie = async (movie) => {
     try {

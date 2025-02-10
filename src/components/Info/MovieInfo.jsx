@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../styles/MovieInfo.css";
-import { tmdbApi } from "../api/api";
+import "./MovieInfo.css";
+import { tmdbApi } from "../../api/api";
 
 const MovieInfo = ({ movie }) => {
   const [trailerUrl, setTrailerUrl] = useState("");
