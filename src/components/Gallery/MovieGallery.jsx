@@ -6,30 +6,23 @@ import "./MovieGallery.css";
 const MovieGallery = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const isFetchingRef = useRef(false); // ✅ Use useRef to track fetching state
   const galleryRef = useRef(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
   const dragRatio = useRef(1.5);
   const [isDraggingState, setIsDraggingState] = useState(false);
-  const [isFetching, setIsFetching] = useState(false);
-  let timeout;
 
   const fetchMovies = useCallback(async (isLeftScroll = false) => {
-    if (isFetching) return;
-    setIsFetching(true);
+    if (isFetchingRef.current) return; // ✅ Prevent fetching if already in progress
+    isFetchingRef.current = true; // ✅ Update useRef instead of state
 
     try {
       const response = await tmdbApi.get("/movie/popular");
       const newMovies = response.data.results;
 
-      setMovies((prevMovies) => {
-        if (isLeftScroll) {
-          return [...newMovies, ...prevMovies];
-        } else {
-          return [...prevMovies, ...newMovies];
-        }
-      });
+      setMovies((prevMovies) => (isLeftScroll ? [...newMovies, ...prevMovies] : [...prevMovies, ...newMovies]));
 
       if (!selectedMovie && newMovies.length > 0) {
         handleSelectMovie(newMovies[0]);
@@ -37,9 +30,9 @@ const MovieGallery = () => {
     } catch (error) {
       console.error("Error fetching movie data", error);
     } finally {
-      setIsFetching(false);
+      isFetchingRef.current = false; // ✅ Reset useRef after fetching
     }
-  }, [isFetching, selectedMovie]);
+  }, [selectedMovie]); // ✅ No 'isFetching' in dependencies
 
   useEffect(() => {
     fetchMovies();
@@ -61,6 +54,29 @@ const MovieGallery = () => {
       console.error("Error fetching movie details:", error);
     }
   };
+
+  const handleScroll = useCallback(() => {
+    if (!galleryRef.current || isFetchingRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = galleryRef.current;
+
+    if (scrollLeft + clientWidth >= scrollWidth - 10) {
+      fetchMovies();
+    }
+
+    if (scrollLeft <= 50) {
+      fetchMovies(true);
+    }
+  }, [fetchMovies]); 
+
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+
+    const onScroll = () => window.requestAnimationFrame(handleScroll);
+    gallery.addEventListener("scroll", onScroll);
+
+    return () => gallery.removeEventListener("scroll", onScroll);
+  }, [handleScroll]);
 
   return (
     <div className="app">
@@ -93,23 +109,6 @@ const MovieGallery = () => {
           isDragging.current = false;
           setIsDraggingState(false);
           galleryRef.current.style.cursor = "grab";
-        }}
-        onScroll={() => {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => {
-            const scrollPosition = galleryRef.current.scrollLeft;
-            const scrollWidth = galleryRef.current.scrollWidth;
-            const clientWidth = galleryRef.current.clientWidth;
-
-            if (scrollPosition + clientWidth >= scrollWidth - 10 && !isFetching) {
-              fetchMovies();
-            }
-
-            const SCROLL_THRESHOLD = 50;
-            if (scrollPosition <= SCROLL_THRESHOLD && !isFetching && scrollPosition >= 0) {
-              fetchMovies(true);
-            }
-          }, 200);
         }}
       >
         {movies.map((movie, index) => (
