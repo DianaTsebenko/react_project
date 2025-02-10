@@ -1,10 +1,12 @@
 .movie-info {
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    width: 400px;
+    margin-top: 60px;
+    width: 500px;
     color: #F7F7F7;
     z-index: 2;
+    margin-bottom: 40px;
+    min-height: 320px;
+    padding-left: 100px;
+
 }
 
 .movie-title {
