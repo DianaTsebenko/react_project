@@ -1,0 +1,40 @@
+.filtered-gallery {
+  display: flex;
+  column-gap: 64px;
+  row-gap: 64px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 5%;
+}
+
+.movie-card-filtered {
+  width: 320px;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.movie-poster-filtered {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
+.movie-title-filtered {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.movie-details-filtered {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  color: rgba(34, 32, 32, 0.8);
+  gap: 10px;
+}
