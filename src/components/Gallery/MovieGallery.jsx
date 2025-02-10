@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { tmdbApi } from "../../api/api";
 import MovieInfo from "../Info/MovieInfo";
 import "./MovieGallery.css";
@@ -6,31 +6,16 @@ import "./MovieGallery.css";
 const MovieGallery = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const isFetchingRef = useRef(false);
-  const galleryRef = useRef(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
-  const dragRatio = useRef(1.5);
-  const [isDraggingState, setIsDraggingState] = useState(false);
 
-  const fetchMovies = useCallback(async (isLeftScroll = false) => {
-    if (isFetchingRef.current) return;
-    isFetchingRef.current = true;
-
+  const fetchMovies = useCallback(async () => {
     try {
       const response = await tmdbApi.get("/movie/popular");
-      const newMovies = response.data.results;
-
-      setMovies((prevMovies) => (isLeftScroll ? [...newMovies, ...prevMovies] : [...prevMovies, ...newMovies]));
-
-      if (!selectedMovie && newMovies.length > 0) {
-        handleSelectMovie(newMovies[0]);
+      setMovies(response.data.results);
+      if (response.data.results.length > 0 && !selectedMovie) {
+        handleSelectMovie(response.data.results[0]);
       }
     } catch (error) {
       console.error("Error fetching movie data", error);
-    } finally {
-      isFetchingRef.current = false;
     }
   }, [selectedMovie]);
 
@@ -58,20 +43,22 @@ const MovieGallery = () => {
   return (
     <div className="app">
       {selectedMovie && <MovieInfo movie={selectedMovie} />}
-      <div className="slider" ref={galleryRef}>
-        {movies.map((movie, index) => (
-          <div
-            key={index}
-            className={`movie ${selectedMovie?.id === movie.id ? "active" : "inactive"} ${isDraggingState ? "dragging" : ""}`}
-            onClick={() => handleSelectMovie(movie)}
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-              alt={movie.title}
-              className="movie-image"
-            />
-          </div>
-        ))}
+      <div className="slider-container">
+        <div className="slider">
+          {movies.map((movie, index) => (
+            <div
+              key={index}
+              className={`movie ${selectedMovie?.id === movie.id ? "active" : "inactive"}`}
+              onClick={() => handleSelectMovie(movie)}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                alt={movie.title}
+                className="movie-image"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
