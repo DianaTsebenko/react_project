@@ -1,9 +1,7 @@
 .app {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    height: 100vh;
+    justify-content: center;
 }
 
 body {
@@ -13,4 +11,6 @@ body {
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    height: 100%;
+    overflow-x: hidden;
 }
