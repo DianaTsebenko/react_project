@@ -1,0 +1,58 @@
+.country-filter-container {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  max-width: 400px;
+  margin: 4% auto;
+}
+
+.country-filter-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.country-filter-input:focus {
+  border-color: #f5c61c56;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.364);
+}
+
+.loading-text {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.country-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border: 1px solid #7e7e7e8b;
+  background-color: #e4e4e49f;
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.country-item {
+  padding: 8px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #252525;
+  border-bottom: 1px solid #7e7e7e8b;
+  transition: background-color 0.2s ease;
+}
+
+.country-item:hover {
+  background: rgba(255, 255, 255, 0.8);
+}

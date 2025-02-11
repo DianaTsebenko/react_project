@@ -1,40 +1,124 @@
 .filtered-gallery {
   display: flex;
-  column-gap: 64px;
-  row-gap: 64px;
-  margin-top: 20px;
-  margin-bottom: 60px;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 60px;
   padding: 0 5%;
 }
 
 .movie-card-filtered {
-  width: 320px;
+  width: 220px;
+  height: 408px;
   text-align: center;
   border-radius: 8px;
   overflow: hidden;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #7e7e7e8b;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  position: relative;
 }
 
+.movie-card-filtered:hover {
+  transform: scale(1.05);
+}
+
+.movie-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.movie-poster-wrapper {
+  position: relative;
+}
+.movie-description-filtered {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .movie-poster-filtered {
   width: 100%;
-  border-bottom: 1px solid #ddd;
+  display: block;
+}
+
+.movie-hover-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  text-align: left;
+  font-size: 14px;
+}
+
+.movie-poster-wrapper:hover .movie-hover-details {
+  opacity: 1;
 }
 
 .movie-title-filtered {
-  margin: 10px 0;
-  font-size: 18px;
+  margin: 8px 0;
+  font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: #ffffff;
 }
 
 .movie-details-filtered {
-  margin: 10px 0;
+  margin: 8px 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
   display: flex;
   justify-content: center;
-  font-size: 16px;
-  color: rgba(34, 32, 32, 0.8);
   gap: 10px;
+}
+
+/* Load More Button */
+.load-more-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.load-more-button:hover {
+  background-color: #f5c51c;
+  color: #2e2e2e;
+}
+
+/* Back to Top Button */
+.back-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.back-to-top-button:hover {
+  background-color: #f5c51c;
+  color: #2e2e2e;
 }
