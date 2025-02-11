@@ -3,13 +3,13 @@ import { HiChevronDoubleUp } from "react-icons/hi";
 import { tmdbApi } from "../../api/api";
 import "./FilteredGallery.css";
 
-const FilteredGallery = ({ filterType, filterValues }) => {
+const FilteredGallery = ({ filterType, filterValues, urlType }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const moviesPerPage = 30;
+  const moviesPerPage = 20;
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -17,17 +17,17 @@ const FilteredGallery = ({ filterType, filterValues }) => {
       try {
         let params = { page, per_page: moviesPerPage };
 
-        if (filterValues && (Array.isArray(filterValues) && filterValues.length > 0)) {
-          params[filterType] = filterValues.join(",");
-        } else if (filterValues && typeof filterValues === "string" && filterValues.trim() !== "") {
-          params[filterType] = filterValues.trim();
+        if (filterValues && filterValues.length > 0) {
+          params[filterType] = Array.isArray(filterValues)
+            ? filterValues.join(",")
+            : filterValues.trim();
         }
-        
-        const response = await tmdbApi.get("/discover/movie", { params });
+
+        const response = await tmdbApi.get(`${urlType}`, { params });
         setMovies((prevMovies) =>
           page === 1 ? response.data.results : [...prevMovies, ...response.data.results]
         );
-        setHasMore(response.data.results.length > 0);
+        setHasMore(response.data.results.length === moviesPerPage); // Перевірка на кількість фільмів
       } catch (error) {
         console.error("Error fetching movies:", error);
       } finally {
@@ -36,12 +36,12 @@ const FilteredGallery = ({ filterType, filterValues }) => {
     };
 
     fetchMovies();
-  }, [filterType, filterValues, page]);
+  }, [filterType, filterValues, page, urlType]);
 
   useEffect(() => {
     setMovies([]);
     setPage(1);
-  }, [filterType, filterValues]);
+  }, [filterType, filterValues, urlType]);
 
   const loadMoreMovies = () => {
     if (hasMore) {
@@ -50,11 +50,7 @@ const FilteredGallery = ({ filterType, filterValues }) => {
   };
 
   const handleScroll = () => {
-    if (window.scrollY > 500) {
-      setShowBackToTop(true);
-    } else {
-      setShowBackToTop(false);
-    }
+    setShowBackToTop(window.scrollY > 500);
   };
 
   const scrollToTop = () => {
@@ -89,23 +85,29 @@ const FilteredGallery = ({ filterType, filterValues }) => {
                   />
                   <div className="movie-hover-details">
                     <p className="movie-description-filtered">
-                      {movie.overview || "Опис недоступний"}
+                      {movie.overview || "Description unavailable"}
                     </p>
                   </div>
                 </div>
-                <h4 className="movie-title-filtered">{movie.title}</h4>
+                <h4 className="movie-title-filtered">
+                  {movie.title ? movie.title : movie.name ? movie.name : "Unknown Title"}
+                </h4>
                 <p className="movie-details-filtered">
-                  {movie.release_date ? movie.release_date.split("-")[0] : "Unknown"} •{" "}
-                  {movie.vote_average ? `Vote: ${movie.vote_average}` : "Unknown vote"}
+                  {movie.release_date
+                    ? movie.release_date.split("-")[0]
+                    : movie.first_air_date
+                    ? movie.first_air_date.split("-")[0]
+                    : "Unknown"}{" "}
+                  • {movie.vote_average ? `Vote: ${movie.vote_average}` : "Unknown vote"}
                 </p>
               </div>
             </a>
           ))
         ) : (
-          <div className="no-movies">No movies found</div>
+          <h1 className="no-movies">No movies found...</h1>
         )}
       </div>
-      {hasMore && !loading && (
+      {hasMore && movies.length % moviesPerPage === 0 && !loading && (
         <button onClick={loadMoreMovies} className="load-more-button">Load More</button>
       )}
       {showBackToTop && (

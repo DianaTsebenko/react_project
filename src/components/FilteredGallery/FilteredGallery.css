@@ -42,6 +42,7 @@
 .movie-poster-filtered {
   width: 100%;
   display: block;
+  height: 326px;
 }
 
 .movie-hover-details {
@@ -64,7 +65,7 @@
 }
 
 .movie-title-filtered {
-  margin: 8px 0;
+  margin: 10px 8px;
   font-size: 16px;
   font-weight: bold;
   color: #ffffff;
@@ -77,6 +78,15 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+.no-movies {
+  position: absolute;
+  color: white;
+  font-size: 32px;
+  margin-top: 20px;
+  margin-left: 5%;
+  justify-self: left;
+  left: 0;
 }
 
 /* Load More Button */
