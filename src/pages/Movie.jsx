@@ -1,9 +1,19 @@
-const Movie = () => {
-  return (
-    <main>
-      <h1>Movie page</h1>
+import React, { useState } from "react";
+import SearchByName from "../components/SearchByName/SearchByName";
+import FilteredGallery from "../components/FilteredGallery/FilteredGallery";
 
-    </main>
+const Movie = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  return (
+    <div>
+      <SearchByName onSearch={setSearchQuery} type='movie'/>
+      <FilteredGallery 
+        filterType="query" 
+        filterValues={searchQuery} 
+        urlType={searchQuery ? "/search/movie" : "/movie/popular"} 
+      />
+    </div>
   );
 };
 

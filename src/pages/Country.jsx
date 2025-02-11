@@ -14,7 +14,7 @@ const Country = () => {
     <main>
       <CountryFilter onCountrySelect={handleCountrySelect} />
       
-       <FilteredGallery filterType="with_origin_country" filterValues={selectedCountry} />
+       <FilteredGallery filterType="with_origin_country" filterValues={selectedCountry} urlType='/discover/movie' />
     </main>
   );
 };

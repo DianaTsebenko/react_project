@@ -64,13 +64,13 @@ const CountryFilter = ({ onCountrySelect }) => {
   };
 
   return (
-    <div className="country-filter-container">
+    <div className="input-container">
       <input
         type="text"
         value={inputValue}  
         onChange={handleInputChange}  
         placeholder={selectedCountry ? selectedCountry.english_name : 'Enter country'}  
-        className="country-filter-input"
+        className="filter-input"
       />
       {isLoading && <p className="loading-text">Loading...</p>}
       {countries.length > 0 && (

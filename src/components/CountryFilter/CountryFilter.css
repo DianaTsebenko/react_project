@@ -1,4 +1,4 @@
-.country-filter-container {
+.input-container {
   position: relative;
   height: 50px;
   width: 100%;
@@ -6,7 +6,7 @@
   margin: 4% auto;
 }
 
-.country-filter-input {
+.filter-input {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -16,7 +16,7 @@
   outline: none;
 }
 
-.country-filter-input:focus {
+.filter-input:focus {
   border-color: #f5c61c56;
   box-shadow: 0 0 2px rgba(255, 255, 255, 0.364);
 }

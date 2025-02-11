@@ -8,7 +8,7 @@ const Genre = () => {
   return (
     <div>
       <GenreFilter onFilterChange={setSelectedGenres} />
-      <FilteredGallery filterType="with_genres" filterValues={selectedGenres} />
+      <FilteredGallery filterType="with_genres" filterValues={selectedGenres} urlType='/discover/movie'/>
     </div>
   );
 };
