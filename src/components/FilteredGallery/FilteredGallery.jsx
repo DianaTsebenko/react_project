@@ -9,7 +9,7 @@ const FilteredGallery = ({ filterType, filterValues }) => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const moviesPerPage = 20;
+  const moviesPerPage = 30;
 
   useEffect(() => {
     const fetchMovies = async () => {
