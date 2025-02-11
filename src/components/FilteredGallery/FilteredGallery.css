@@ -1,15 +1,19 @@
 .filtered-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  justify-content: start;
   margin-top: 20px;
   margin-bottom: 60px;
   padding: 0 5%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .movie-card-filtered {
-  width: 220px;
+  width: 100%; /* Автоматична ширина відповідно до колонки */
+  max-width: 240px; /* Максимальна ширина, щоб картки не розширювались занадто сильно */
   height: 408px;
   text-align: center;
   border-radius: 8px;
@@ -29,9 +33,11 @@
   color: inherit;
 }
 
+/* Інший стиль залишився без змін */
 .movie-poster-wrapper {
   position: relative;
 }
+
 .movie-description-filtered {
   margin: 0;
   display: -webkit-box;
@@ -39,6 +45,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 .movie-poster-filtered {
   width: 100%;
   display: block;
@@ -79,6 +86,7 @@
   justify-content: center;
   gap: 10px;
 }
+
 .no-movies {
   position: absolute;
   color: white;
