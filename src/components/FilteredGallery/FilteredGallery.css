@@ -12,8 +12,8 @@
 }
 
 .movie-card-filtered {
-  width: 100%; /* Автоматична ширина відповідно до колонки */
-  max-width: 240px; /* Максимальна ширина, щоб картки не розширювались занадто сильно */
+  width: 100%;
+  max-width: 240px;
   height: 408px;
   text-align: center;
   border-radius: 8px;
@@ -33,7 +33,6 @@
   color: inherit;
 }
 
-/* Інший стиль залишився без змін */
 .movie-poster-wrapper {
   position: relative;
 }
