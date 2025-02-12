@@ -1,10 +1,18 @@
+.slider-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100vw;
+    position: relative;
+}
+
 .slider {
     display: flex;
-    padding-top: 60px;
-    position: relative;
-    width: 100vw;
+    padding-top: 45px;
     gap: 32px;
-    height: auto;
+    transition: transform 0.3s ease;
+    cursor: grab;
+    width: fit-content;
 }
 
 .movie {
@@ -33,11 +41,6 @@
 .movie img.movie-image {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
     border-radius: 8px;
-}
-
-.slider-container {
-    display: flex;
-    align-items: center;
 }
