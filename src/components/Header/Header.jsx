@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Header.css";
 import SearchBar from "../SearchBar/SearchBar";
 
-const Header = () => {
+const Header = ({ setSearchQuery }) => {
   return (
     <header className="header">
       <nav className="header-nav">
@@ -34,7 +34,7 @@ const Header = () => {
               TV series
             </NavLink>
           </li>
-          <li><SearchBar/></li>
+          <li><SearchBar setSearchQuery={setSearchQuery} /></li>
         </ul>
       </nav>
     </header>

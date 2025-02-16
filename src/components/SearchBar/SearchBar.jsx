@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { Search, X } from "lucide-react";
 import "./SearchBar.css";
 
-export default function SearchBar() {
+export default function SearchBar({ setSearchQuery }) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const inputRef = useRef(null);
@@ -18,15 +18,21 @@ export default function SearchBar() {
     }
   };
 
+  const handleChange = (e) => {
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    setSearchQuery(newQuery); 
+  };
+
   return (
     <div className="search-bar-cont" onBlur={handleBlur}>
-          {!isOpen ? (
-              <div className="search-icon-cont">
-                <div className="custom-div"></div>
-                <button onClick={handleOpen} className="search-bar-icon">
-                    <Search size={18} />
-                </button>
-              </div>
+      {!isOpen ? (
+        <div className="search-icon-cont">
+          <div className="custom-div"></div>
+          <button onClick={handleOpen} className="search-bar-icon">
+            <Search size={18} />
+          </button>
+        </div>
       ) : (
         <div className="relative">
           <Search size={18} className="input-icon" />
@@ -34,12 +40,12 @@ export default function SearchBar() {
             ref={inputRef}
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={handleChange}
             placeholder="Name, genre ..."
             className="search-input"
           />
           {query && (
-            <button onClick={() => setQuery("")} className="clear-button">
+            <button onClick={() => { setQuery(""); setSearchQuery(""); }} className="clear-button">
               <X size={18} />
             </button>
           )}
@@ -48,3 +54,4 @@ export default function SearchBar() {
     </div>
   );
 }
+

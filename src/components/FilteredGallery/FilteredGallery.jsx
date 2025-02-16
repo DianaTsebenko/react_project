@@ -71,7 +71,9 @@ const FilteredGallery = ({ filterType, filterValues, urlType }) => {
           movies.filter(movie => movie.poster_path).map((movie) => (
             <a
               key={movie.id}
-              href={`https://www.themoviedb.org/movie/${movie.id}`}
+              href={urlType === "/search/tv" 
+              ? `https://www.themoviedb.org/tv/${movie.id}` 
+              : `https://www.themoviedb.org/movie/${movie.id}`}
               target="_blank"
               rel="noopener noreferrer"
               className="movie-card-link"

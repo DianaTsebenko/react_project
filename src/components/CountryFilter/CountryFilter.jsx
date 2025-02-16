@@ -7,9 +7,9 @@ const CountryFilter = ({ onCountrySelect }) => {
   const [countries, setCountries] = useState([]); 
   const [isLoading, setIsLoading] = useState(false); 
   const [debouncedInput, setDebouncedInput] = useState(''); 
-  const [selectedCountry, setSelectedCountry] = useState(null);  // Додали стан для вибраної країни
+  const [selectedCountry, setSelectedCountry] = useState(null); 
 
-  // Затримка перед відправкою запиту
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedInput(inputValue);
@@ -18,7 +18,7 @@ const CountryFilter = ({ onCountrySelect }) => {
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  // Пошук країн за введеним значенням
+  // Пошук країн 
   useEffect(() => {
     if (debouncedInput.length >= 1) {
       const fetchCountries = async () => {
